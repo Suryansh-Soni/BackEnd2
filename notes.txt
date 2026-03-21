@@ -1,0 +1,3 @@
+npm is a standard package manager for node.js
+1) library of packages to use in npm 
+2) command line tool ,install package ,update etc
