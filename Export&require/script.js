@@ -8,5 +8,11 @@
 //   console.log(args[i]);
 // }
 
-let value = require("./math");
-console.log(value);
+// let value = require("./math");
+// console.log(value);
+
+
+// requiring directories : find index.js from that directory 
+// and then the export part is exported . index.js is the entry point (like main() in C).
+let info=require("./fruits")
+console.log(info)
