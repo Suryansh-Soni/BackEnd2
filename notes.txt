@@ -1,3 +1,20 @@
 npm is a standard package manager for node.js
 1) library of packages to use in npm 
 2) command line tool ,install package ,update etc
+
+
+when using import export 
+when we import some function we cant directly run it we need to first change the typr to module in package.json
+
+-require load complete js file with all the functions 
+-import is new , it can selectively import the function need which is space efficent and async loading i done 
+
+-library: use to controle small part of the code ,eg: AXIOS
+-framework:complete app is define by these , eg : EXPRESS
+
+-Express :
+1)listen incomming request
+2)parse to json
+3)match resopnse with routes
+4)send suitable resopnse
+its in npm as package  
