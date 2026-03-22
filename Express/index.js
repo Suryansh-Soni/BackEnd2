@@ -18,7 +18,7 @@ app.listen(port, () => {
 //   res.send("<h1>html</h1>"); //only one time in a app.use
 // });
 
-// .getfor listening to specific path : any other raoute give not found or any custom error response.
+// .get is for listening to specific path : any other raoute give not found or any custom error response.
 
 app.get("/", (req, res) => {
   res.send("you connected root path");
