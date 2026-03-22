@@ -18,3 +18,18 @@ when we import some function we cant directly run it we need to first change the
 3)match resopnse with routes
 4)send suitable resopnse
 its in npm as package  
+structure:{
+require Express
+app=express()
+port;
+app.listen(port,function)
+}
+ ctrl+c to stop the server 
+-when request come this run .
+-app.use=> to handle any routes
+ app.use((req,res)=>{
+    res.send(" " )-> can send obh , html , string anything 
+    // it parses and send the response .
+ })
+-app.get("/routename",function) =>used for singel specific routename
+
