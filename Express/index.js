@@ -28,12 +28,22 @@ app.get("/apple", (req, res) => {
   res.send("conected to apple .");
 });
 
-// catch-all route
-app.use((req, res) => {
-  res.status(404).send("This path does not exist");
+// // catch-all route
+// app.use((req, res) => {
+//   res.status(404).send("This path does not exist");
+// });
+
+// app.post("/", (req, res) => {
+//   console.log(req.body); // incoming data
+//   res.send("Data received hello");
+// });
+
+
+// path parameters
+app.get("/:username/:id", (req, res) => {
+  console.log(req.params);
+  let { username, id } = req.params;
+  res.send("whelcome to page of yours .");
 });
 
-app.post("/", (req, res) => {
-  console.log(req.body); // incoming data
-  res.send("Data received");
-});
+// query strings 
