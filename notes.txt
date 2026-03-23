@@ -33,3 +33,11 @@ app.listen(port,function)
  })
 -app.get("/routename",function) =>used for singel specific routename
 
+-query Strings 
+http://localhost:3000/search?q=hello for
+app.get("/search", (req, res) => {
+  console.log(req.query);
+  res.send(" no result .");
+});
+
+req.params,req.query
