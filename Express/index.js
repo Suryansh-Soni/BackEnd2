@@ -40,10 +40,15 @@ app.get("/apple", (req, res) => {
 
 
 // path parameters
-app.get("/:username/:id", (req, res) => {
-  console.log(req.params);
-  let { username, id } = req.params;
-  res.send("whelcome to page of yours .");
-});
+// app.get("/:username/:id", (req, res) => {
+//   console.log(req.params);
+//   let { username, id } = req.params;
+//   res.send("whelcome to page of yours .");
+// });
 
 // query strings 
+app.get("/search", (req, res) => {
+  let {q}=req.query;
+  let code =`<h1>Search results for query ${q}</h1>`;
+  res.send(code)
+});
