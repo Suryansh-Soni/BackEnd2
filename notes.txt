@@ -49,3 +49,5 @@ app.set("view engine",'ejs')
 app.send()->send html, obj, string etc .
 app.render()-> used to send big file 
 
+--interpoltion syntax: embedding expression into marked up text .
+<%= %>-> used to make operation work on page .
