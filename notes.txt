@@ -51,3 +51,6 @@ app.render()-> used to send big file
 
 --interpoltion syntax: embedding expression into marked up text .
 <%= %>-> used to make operation work on page .
+
+/:suryansh in link if taking data direct from index.js
+/cats if taken from data base 
