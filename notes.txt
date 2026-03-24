@@ -57,3 +57,5 @@ app.render()-> used to send big file
 
 -> searving static files like style.css
 app.use(express.static(path.join(__dirname, "public")));
+
+-> include : used to make subtemplate : like for section like head in file called head.ejs in views .
