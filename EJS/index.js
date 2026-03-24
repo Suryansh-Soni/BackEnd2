@@ -5,6 +5,10 @@ const port = 3000;
 
 const instadata = require("./data.json"); // ✅ move outside
 
+//serving static files
+app.use(express.static(path.join(__dirname, "public/css")));
+app.use(express.static(path.join(__dirname, "public/js")));
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 

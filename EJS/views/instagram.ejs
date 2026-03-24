@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
     <title>Instagram</title>
-</head>
-<body>
- <h2>This page belongs to <%= data.name %></h2>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js"></script>
+  </head>
+  <body>
+    <h2>This page belongs to <%= data.name %></h2>
 
-<p>
-  Followers: <%= data.followers %> 
-  &nbsp;&nbsp;&nbsp;
-  Following: <%= data.following %>
-</p>
+    <p>
+      Followers: <%= data.followers %> &nbsp;&nbsp;&nbsp; Following: <%=
+      data.following %>
+    </p>
 
-<h3>Posts:</h3>
+    <h3>Posts:</h3>
 
-<% for (let post of data.posts) { %>
-  <div>
-    <img src="<%= post.image %>" width="200"/>
-    <p>Likes: <%= post.likes %></p>
-    <p>Comments: <%= post.comments %></p>
-  </div>
-<% } %>
-</body>
+    <% for (let post of data.posts) { %>
+    <div>
+      <img src="<%= post.image %>" width="200" />
+      <p>Likes: <%= post.likes %></p>
+      <p>Comments: <%= post.comments %></p>
+    </div>
+    <% } %>
+  </body>
 </html>

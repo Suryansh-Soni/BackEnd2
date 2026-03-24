@@ -54,3 +54,6 @@ app.render()-> used to send big file
 
 /:suryansh in link if taking data direct from index.js
 /cats if taken from data base 
+
+-> searving static files like style.css
+app.use(express.static(path.join(__dirname, "public")));
