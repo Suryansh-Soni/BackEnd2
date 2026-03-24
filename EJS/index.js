@@ -13,10 +13,13 @@ app.get("/home", (req, res) => {
   res.render("home");
 });
 app.get("/rolldice", (req, res) => {
-  let dice= Math.floor(Math.random()*6);
-  res.render("rolldice",{num:dice});
+  let dice = Math.floor(Math.random() * 6);
+  res.render("rolldice", { num: dice });
 });
-
+app.get("/ig/:username", (req, res) => {
+  let { username } = req.params;
+  res.render("instagram.ejs", { username });
+});
 
 app.listen(port, () => {
   console.log(`running on port ${port}`);
