@@ -13,7 +13,8 @@ app.get("/home", (req, res) => {
   res.render("home");
 });
 app.get("/rolldice", (req, res) => {
-  res.render("home");
+  let dice= Math.floor(Math.random()*6);
+  res.render("rolldice",{num:dice});
 });
 
 
