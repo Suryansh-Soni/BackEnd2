@@ -1,0 +1,7 @@
+// {
+//   "livePreview.defaultPreviewPath": "/miscellaneous/frontend/index.html"
+// }
+{
+  "livePreview.defaultPreviewPath": "...",
+  "liveServer.settings.root": "/miscellaneous/frontend"
+}
