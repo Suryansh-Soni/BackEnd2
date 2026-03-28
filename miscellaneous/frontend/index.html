@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checking get and post request</title>
+  </head>
+  <body>
+    <h3>Get request form</h3>
+    <form method="get" action="http://localhost:3000/register">
+      <label for="name">Enter the name :</label>
+      <input type="text" name="name" id="name" />
+      <label for="age">Enter your age:</label>
+      <input type="text" name="age" id="age" />
+      <button>Submit</button>
+    </form>
+    <h3>Post request form</h3>
+
+    <form method="post" action="http://localhost:3000/register">
+      <label for="name">Enter the name :</label>
+      <input type="text" name="name" id="name2" />
+      <label for="age">Enter your age:</label>
+      <input type="text" name="age" id="age2" />
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
