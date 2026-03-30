@@ -68,3 +68,66 @@ post:- used to post something ,to create write update , any type of data can be 
 =>app.use(express.urlencoded({ extended: true })); convert url encoded value to readable 
 same for json in post to middleware:
 app.use(express.json());
+
+oops:
+1) object prototype:mechanism by wgich javasc obj inherit feature from other objects.
+like in a array we can difine diff function ,but other array will not get that  function 
+because it is not in the prototype of array . 
+-> arr.__proto__ -> this is the refrence to the prototype
+changeing def of some method in prototype: arr.__proto__.push=(n)=>{
+  console.log(n);
+}
+now when arr.push(5):->5 wil be printed 
+-> accesing actual object : Array.prototype 
+
+2) factory functions: function that create objects .
+fucntion personamaker(name,age){
+  const person={
+    name: name ,
+    age=age,
+    talk(){
+      console.log("hello i am bla bla bla .)
+    }
+  }
+} this fucntion create persons object.
+
+3) constructors: dosent return anything and start with capital letter
+function Person(name,age){
+  this.name=name;
+  this.age=age;
+  talk(){
+    console.log("hello ji")
+  }
+}
+let p1=new Person('Suryansh',21); here p1 is a instance  
+new keyword used prototype concept .
+and here p1.talk == p2.talk -> true , in factory function not .
+
+4) class: 
+class person{
+  constructor(name,age){
+    this.name=name;
+    this.age=age;
+  }talk(){
+    console.log("hello ji")
+  }
+}
+
+let p1=new Person("suryansh",21)
+
+5)Inheritance:
+class person{
+  constructor(name,age){
+    this.name=name;
+    this.age=age;
+  }talk(){
+    console.log("hello ji")
+  }
+}
+
+class sprotperson extends person{
+  constructor(name,age,sport){
+    super(name,age);
+    this.sport=sport;
+  }
+}
