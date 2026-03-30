@@ -131,3 +131,6 @@ class sprotperson extends person{
     this.sport=sport;
   }
 }
+
+-> REST:representational state transfer -> architectural style taht define set of constraints to be used for creating web services .
+used for CRUD operations .(get,post,put(update existing data),patch(update existing data partially),delete)
