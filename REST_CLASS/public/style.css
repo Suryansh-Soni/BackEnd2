@@ -1,0 +1,13 @@
+h1 {
+  color: brown;
+}
+
+.post {
+  background-color: blanchedalmond;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.user {
+  font-style: italic;
+}
