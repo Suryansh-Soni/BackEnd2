@@ -30,8 +30,9 @@ app.get("/posts/new", (req, res) => {
   res.render("new");
 });
 app.post("/posts", (req, res) => {
-  console.log(req.body);
-  res.send("Post created successfully");
+  let { username, content } = req.body;
+  posts.push({ username, content });
+  res.redirect("/posts");
 });
 
 app.listen(port, () => {
