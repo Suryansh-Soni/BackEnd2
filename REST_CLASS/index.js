@@ -34,12 +34,12 @@ app.get("/posts/new", (req, res) => {
 app.post("/posts", (req, res) => {
   let { username, content } = req.body;
   let newId= uuidv4();
-  posts.push({newId, username, content });
+  posts.push({id:newId, username, content });
   res.redirect("/posts");
 });
 
 app.get("/posts/:id", (req, res) => {
-  let id = req.params;
+  let {id} = req.params;
   let post = posts.find((p) => p.id === id);
   res.render("show", { post: post });
 });
