@@ -26,6 +26,14 @@ app.get("/posts", (req, res) => {
   res.render("index", { posts: posts }); // Pass data to EJS
 });
 
+app.get("/posts/new", (req, res) => {
+  res.render("new");
+});
+app.post("/posts", (req, res) => {
+  console.log(req.body);
+  res.send("Post created successfully");
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
