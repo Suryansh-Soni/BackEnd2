@@ -134,3 +134,6 @@ class sprotperson extends person{
 
 -> REST:representational state transfer -> architectural style taht define set of constraints to be used for creating web services .
 used for CRUD operations .(get,post,put(update existing data),patch(update existing data partially),delete)
+
+-> redirect : used to redirect to diff url along with any response .
+like when creating new post we are redirecting to te main age .
