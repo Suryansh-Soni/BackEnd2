@@ -29,10 +29,17 @@ app.get("/posts", (req, res) => {
 app.get("/posts/new", (req, res) => {
   res.render("new");
 });
+
 app.post("/posts", (req, res) => {
   let { username, content } = req.body;
   posts.push({ username, content });
   res.redirect("/posts");
+});
+
+app.get("/posts/:id", (req, res) => {
+  let id=req.params;
+  let post =posts.find((p)=>p.id === id);
+  res.render("show", { post: post });
 });
 
 app.listen(port, () => {
