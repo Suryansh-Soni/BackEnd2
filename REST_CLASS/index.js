@@ -3,7 +3,9 @@ const app = express();
 const port = 3000;
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
+const methodOverride = require("method-override");
 
+app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -22,6 +24,8 @@ let posts = [
 
 app.get("/", (req, res) => {
   res.send("Hello World");
+  console.log(req.body);
+  console.log(req.params);
 });
 
 app.get("/posts", (req, res) => {
@@ -47,15 +51,27 @@ app.get("/posts/:id", (req, res) => {
 
 app.patch("/posts/:id", (req, res) => {
   let { id } = req.params;
+
   let { content } = req.body;
   let post = posts.find((p) => p.id === id);
   if (!post) {
     return res.status(404).send("Post not found");
   }
   post.content = content;
-  res.send("Post updated successfully");
+  res.redirect("/posts");
 });
 
+app.get("/posts/:id/edit", (req, res) => {
+  let { id } = req.params;
+  let post = posts.find((p) => p.id === id);
+  res.render("edit", { post: post });
+});
+
+app.delete("/posts/:id", (req, res) => {
+  let { id } = req.params;
+  posts = posts.filter((p) => p.id !== id);
+  res.redirect("/posts");
+});
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
