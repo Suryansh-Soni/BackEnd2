@@ -141,3 +141,6 @@ like when creating new post we are redirecting to te main age .
 uuid-> universal unique id
 
 -> Patch request-> 
+
+in html only : get and post works 
+we use method override 
