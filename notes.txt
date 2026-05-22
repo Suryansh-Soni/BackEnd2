@@ -144,3 +144,12 @@ uuid-> universal unique id
 
 in html only : get and post works 
 we use method override 
+
+Sql->use dbname
+db.collectionname.operation()
+operations-> find,findOne,update,updateOne,delete,deleteOne,replace etc.
+
+
+mongoose->
+const User(model)=mongoose.model("User"(collection),schemaname)
+model name -> User save as user in small caps
