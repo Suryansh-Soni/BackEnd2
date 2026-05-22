@@ -146,8 +146,31 @@ in html only : get and post works
 we use method override 
 
 Sql->use dbname
+db.createCollection("students")
+db.students.insertOne([{
+  name:"Suryansh",
+  age:21,
+  city:"Nagpur"
+}])
 db.collectionname.operation()
 operations-> find,findOne,update,updateOne,delete,deleteOne,replace etc.
+
+db.collection.find({key:value})
+db.collection.updateOne(
+  {condition},
+  {$set:{updatedValues}}
+)
+db.students.updateOne(
+  {name:"Suryansh"},
+  {$set:{age:22}}
+)
+
+db.students.replaceOne(
+  {name:"Rahul"},
+  {name:"Rahul", age:25}
+)
+
+db.students.deleteOne({name:"Rahul"})
 
 
 mongoose->
