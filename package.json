@@ -20,5 +20,9 @@
   "devDependencies": {
     "nodemon": "^3.1.14"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "@faker-js/faker": "^10.4.0",
+    "mysql2": "^3.22.3"
+  }
 }
