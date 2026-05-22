@@ -176,3 +176,4 @@ db.students.deleteOne({name:"Rahul"})
 mongoose->
 const User(model)=mongoose.model("User"(collection),schemaname)
 model name -> User save as user in small caps
+-> mongoose use operation buffering : allow you to start using the model immediately ,without waiting for mongoose to establish a connection to monoDb.
