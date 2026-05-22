@@ -177,3 +177,10 @@ mongoose->
 const User(model)=mongoose.model("User"(collection),schemaname)
 model name -> User save as user in small caps
 -> mongoose use operation buffering : allow you to start using the model immediately ,without waiting for mongoose to establish a connection to monoDb.
+
+// find:
+User.find({age:{ $gt: 30 }}).then((res)=>{
+    console.log("All users:", res);
+}).catch(err => console.log(err));
+findOne,findById 
+
