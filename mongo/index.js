@@ -70,4 +70,11 @@ User.findOneAndUpdate({name:"Jane Doe"}, {age:28}, {new:true}).then((res)=>{
 // }).catch(err => console.log(err));
 
 
-
+// findByIdAndDelete
+// User.findByIdAndDelete("64a1f8c9e5b0c2a1b2c3d4e").then((res)=>{
+//     console.log("User deleted:", res);
+// }).catch(err => console.log(err));
+//findAndDelete
+// User.findOneAndDelete({name:"Jane Doe"}).then((res)=>{
+//     console.log("User deleted:", res);
+// }).catch(err => console.log(err));
