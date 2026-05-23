@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Chats</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        margin-left: 20px;
+      }
+
+      .chat {
+        background-color: aliceblue;
+        padding: 20px;
+        border-radius: 16px;
+        display: inline-block;
+        margin-bottom: 15px;
+      }
+
+      .msg {
+        background-color: dodgerblue;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h3>All Chats</h3>
+
+    <form action="/chats/new" method="get">
+      <button>New Chat</button>
+    </form>
+
+    <br />
+
+    <% for(let chat of chats){ %>
+
+    <div class="chat">
+      <p><b>From:</b> <%= chat.from %></p>
+
+      <div class="msg">
+        <p><%= chat.message %></p>
+
+        <form method="GET" action="/chats/<%= chat._id %>/edit">
+          <button>Edit</button>
+        </form>
+        <form method="POST" action="/chats/<%= chat._id %>?_method=delete">
+          <button>Delete</button>
+        </form>
+      </div>
+
+      <p><b>To:</b> <%= chat.to %></p>
+
+      <p><%= chat.created_at.toDateString() %></p>
+
+      <p><%= chat.created_at.toString().split(" ")[4] %></p>
+    </div>
+
+    <br />
+
+    <% } %>
+  </body>
+</html>
