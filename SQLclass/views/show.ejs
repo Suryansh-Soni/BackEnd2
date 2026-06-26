@@ -22,7 +22,12 @@
           <form method="get" action="/user/<%= user.id %>/edit">
             <button type="submit">Edit</button>
           </form>
-        </td>   
+        </td>
+        <td>
+          <form method="post" action="/user/<%=user.id%>/delete?_method=DELETE">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
       </tr>
       <% }) %>
     </table>
