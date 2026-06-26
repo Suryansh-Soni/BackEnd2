@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>total no of user are:  <%= userCount %></h2>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    <h2>total no of user are: <%= userCount %></h2>
+    <h1>
+      Show all users
+      <button><a href="http://localhost:8080/user">View Users</a></button>
+    </h1>
+    <a href="http://localhost:8080/user/new">Create New User</a>
+  </body>
 </html>
