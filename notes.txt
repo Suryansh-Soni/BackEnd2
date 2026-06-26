@@ -184,3 +184,9 @@ User.find({age:{ $gt: 30 }}).then((res)=>{
 }).catch(err => console.log(err));
 findOne,findById 
 
+//middleware:
+they run for every reqest and even run when the path is incorrect 
+unity middleware->
+app.use((req,res,next)=>{
+  .....
+}) 
