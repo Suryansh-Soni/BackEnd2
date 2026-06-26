@@ -77,13 +77,15 @@ app.get("/chats/:id/edit", async (req, res) => {
 //update route
 
 app.put("/chats/:id", (req, res) => {
+  
   let { id } = req.params;
+  
   let { message: newmessage } = req.body;
 
   let updatedchat = Chat.findByIdAndUpdate(
     id,
     { message: newmessage },
-    { new: true },
+    { runValidator:true, new: true },
   )
     .then((chat) => {
       console.log("Chat updated:", chat);
