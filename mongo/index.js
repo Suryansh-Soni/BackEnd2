@@ -1,21 +1,22 @@
-const mongoose=require('mongoose');
+const mongoose = require("mongoose");
 // mongoose.connect("mongodb://localhost:27017/test");
-main().then((res)=>{
+main()
+  .then((res) => {
     console.log("Connected to MongoDB");
-}).catch(err => console.log(err));
+  })
+  .catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect('mongodb://localhost:27017/test');
+  await mongoose.connect("mongodb://localhost:27017/test");
   console.log("connected to mongo");
-} 
+}
 
-const userSchema=new mongoose.Schema({
-    name:String,
-    age:Number,
-    email:String
-})
-// making new collection User in database test with userSchema
-const User=mongoose.model("User",userSchema);
-
+const userSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  email: String,
+});
+// making new collection Employee in database test with userSchema
+const employee = mongoose.model("Employee", userSchema);
 
 // //insert data in database
 // const user1=new User({
@@ -25,10 +26,9 @@ const User=mongoose.model("User",userSchema);
 // });
 // user1.save().then((res)=>{
 //     console.log("User saved:", res);
-// }).catch(err => console.log(err));  
+// }).catch(err => console.log(err));
 
-
-// // insert many 
+// // insert many
 // User.insertMany([
 //     {
 //         name:"Jane Doe",
@@ -49,17 +49,18 @@ const User=mongoose.model("User",userSchema);
 //     console.log("All users:", res);
 // }).catch(err => console.log(err));
 
-//  // update 
+//  // update
 // User.updateOne({name:"John Doe"}, {age:45}).then((res)=>{
 //     console.log("User updated:", res);
 // }).catch(err => console.log(err));
 
-// findOneAndUpdate if set new true it return modified object rather that than original 
-User.findOneAndUpdate({name:"Jane Doe"}, {age:28}, {new:true}).then((res)=>{
-    console.log("User updated:", res);
-}).catch(err => console.log(err));
+// findOneAndUpdate if set new true it return modified object rather that than original
+// User.findOneAndUpdate({ name: "Jane Doe" }, { age: 28 }, { new: true })
+//   .then((res) => {
+//     console.log("User updated:", res);
+//   })
+//   .catch((err) => console.log(err));
 // findByIdAndUpdate
-
 
 // User.deleteOne({name:"Bob Smith"}).then((res)=>{
 //     console.log("User deleted:", res);
@@ -68,7 +69,6 @@ User.findOneAndUpdate({name:"Jane Doe"}, {age:28}, {new:true}).then((res)=>{
 // User.deleteMany({age:{ $gt: 30 }}).then((res)=>{
 //     console.log("Users deleted:", res);
 // }).catch(err => console.log(err));
-
 
 // findByIdAndDelete
 // User.findByIdAndDelete("64a1f8c9e5b0c2a1b2c3d4e").then((res)=>{
