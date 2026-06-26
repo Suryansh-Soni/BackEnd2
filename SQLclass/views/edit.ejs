@@ -7,11 +7,14 @@
   </head>
 
   <body>
-    <h2>Edit User: <%= user.email %></h2>
+    <h2>Edit User: <%= user.name %></h2>
 
     <form method="POST" action="/user/<%= user.id %>?_method=PATCH">
-      <input type="text" name="username" value="<%= user.name %>" />
-
+      <label for="username">Name:</label>
+      <input type="text" name="username" placeholder="<%= user.name %>" />
+      <br />
+      <label for="email">Email:</label>
+      <input type="email" name="email" placeholder="<%= user.email %>" /><br />
       <button type="submit">Update</button>
     </form>
   </body>
