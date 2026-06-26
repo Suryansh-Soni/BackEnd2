@@ -1,1 +1,2 @@
-select * from users;
+ALTER TABLE users
+MODIFY COLUMN id VARCHAR(40) NOT NULL;
