@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const Chat = require("./models/chat");
+const User = require("./models/user");
+const Post = require("./models/post");
 const { render } = require("ejs");
 const methodOverride = require("method-override");
 
@@ -32,6 +34,15 @@ app.get("/", (req, res) => {
 //     res.render("chats", { chats });
 //   }).catch(err => console.log(err));
 // });
+
+app.get("/posts", (req, res) => {
+  Post.find()
+    .populate("author", "username email")
+    .then((posts) => {
+      console.log(posts);
+    });
+  res.send("post viewed ");
+});
 
 app.get("/chats", async (req, res) => {
   let chats = await Chat.find();
@@ -77,15 +88,14 @@ app.get("/chats/:id/edit", async (req, res) => {
 //update route
 
 app.put("/chats/:id", (req, res) => {
-  
   let { id } = req.params;
-  
+
   let { message: newmessage } = req.body;
 
   let updatedchat = Chat.findByIdAndUpdate(
     id,
     { message: newmessage },
-    { runValidator:true, new: true },
+    { runValidator: true, new: true },
   )
     .then((chat) => {
       console.log("Chat updated:", chat);
