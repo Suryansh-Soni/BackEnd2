@@ -3,6 +3,9 @@ import crypto, { hash } from "crypto";
 import config from "../config/config.js";
 import jwt from "jsonwebtoken";
 import sessionModel from "../models/session.model.js";
+import { sendEmail } from "../services/email.service.js";
+import { generateOtp, getOtpHtml } from "../utils/util.js";
+import otpModel from "../models/otp.model.js";
 
 export async function register(req, res) {
   const { username, email, password } = req.body;
@@ -19,54 +22,62 @@ export async function register(req, res) {
     .update(password)
     .digest("hex");
 
-  const newUser = await User.create({
+  const user = await User.create({
     username,
     email,
     password: hashedPassword,
   });
 
+  const otp = generateOtp();
+  const html = getOtpHtml(otp);
+  const otpHash = crypto.createHash("sha256").update(otp).digest("hex");
+  await otpModel.create({
+    email,
+    user: user._id,
+    otpHash,
+  });
+  await sendEmail(email, "otp verification", `YourOtp code is ${otp}`, html);
   //   const Token = jwt.sign({ userId: newUser._id }, config.JWT_SECRET, {
   //     expiresIn: "1h",
   //   });
 
-  const refreshToken = jwt.sign({ userId: newUser._id }, config.JWT_SECRET, {
-    expiresIn: "7d",
-  });
+  // const refreshToken = jwt.sign({ userId: newUser._id }, config.JWT_SECRET, {
+  //   expiresIn: "7d",
+  // });
 
-  const refreshTokenHash = crypto
-    .createHash("sha256")
-    .update(refreshToken)
-    .digest("hex");
+  // const refreshTokenHash = crypto
+  //   .createHash("sha256")
+  //   .update(refreshToken)
+  //   .digest("hex");
 
-  const session = await sessionModel.create({
-    user: newUser._id,
-    refreshTokenHash,
-    ip: req.ip,
-    userAgent: req.get("user-agent"),
-  });
-  const accessToken = jwt.sign(
-    { userId: newUser._id, sessionId: session._id },
-    config.JWT_SECRET,
-    {
-      expiresIn: "15m",
-    },
-  );
+  // const session = await sessionModel.create({
+  //   user: newUser._id,
+  //   refreshTokenHash,
+  //   ip: req.ip,
+  //   userAgent: req.get("user-agent"),
+  // });
+  // const accessToken = jwt.sign(
+  //   { userId: newUser._id, sessionId: session._id },
+  //   config.JWT_SECRET,
+  //   {
+  //     expiresIn: "15m",
+  //   },
+  // );
 
-  res.cookie("refreshToken", refreshToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-  });
+  // res.cookie("refreshToken", refreshToken, {
+  //   httpOnly: true,
+  //   secure: true,
+  //   sameSite: "strict",
+  //   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+  // });
 
   res.status(201).json({
-    message: "User registered successfully",
-    accessToken,
-    sessionId: session._id,
+    message: "User registered successfully. OTP sent to email.",
     user: {
-      id: newUser._id,
-      username: newUser.username,
-      email: newUser.email,
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      verified: user.verified,
     },
   });
 }
@@ -78,6 +89,10 @@ export async function login(req, res) {
 
   if (!user) {
     return res.status(401).json({ message: "No such user" });
+  }
+
+  if (!user.verified) {
+    return res.status(401).json({ message: "email not verified." });
   }
 
   const hashPassword = crypto
@@ -250,5 +265,40 @@ export async function logoutAll(req, res) {
   res.clearCookie("refreshToken");
   res.status(200).json({
     message: "Logged out successfully from all devices",
+  });
+}
+
+export async function verifyEmail(req, res) {
+  const { otp, email } = req.body;
+
+  const otpHash = crypto.createHash("sha256").update(otp).digest("hex");
+
+  const otpDoc = await otpModel.findOne({
+    email,
+    otpHash,
+  });
+
+  if (!otpDoc) {
+    return res.status(400).json({ message: "Invalid OTP" });
+  }
+
+  const user = await User.findByIdAndUpdate(
+    otpDoc.user,
+    { verified: true },
+    { new: true },
+  );
+
+  await otpModel.deleteMany({
+    user: otpDoc.user,
+  });
+
+  return res.status(200).json({
+    message: "Email verified successfully",
+    user: {
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      verified: user.verified,
+    },
   });
 }
