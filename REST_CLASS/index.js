@@ -24,8 +24,6 @@ let posts = [
 
 app.get("/", (req, res) => {
   res.send("Hello World");
-  console.log(req.body);
-  console.log(req.params);
 });
 
 app.get("/posts", (req, res) => {

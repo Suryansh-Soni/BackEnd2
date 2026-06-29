@@ -49,6 +49,6 @@ app.get("/apple", (req, res) => {
 // query strings 
 app.get("/search", (req, res) => {
   let {q}=req.query;
-  let code =`<h1>Search results for query ${q}</h1>`;
+  let code =`<h1>Search results for query <u>${q}<u></h1>`;
   res.send(code)
 });

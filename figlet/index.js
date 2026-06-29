@@ -14,7 +14,7 @@ doStuff();
 
 figlet.text(
   "Boo!",
-  {
+  { 
     font: "Ghost",
     horizontalLayout: "default",
     verticalLayout: "default",
