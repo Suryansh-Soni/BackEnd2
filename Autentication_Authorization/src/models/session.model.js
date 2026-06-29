@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import { refreshToken } from "../controllers/auth.controller";
+import { refreshToken } from "../controllers/auth.controller.js";
 
 const sessionSchema = new mongoose.Schema(
   {
-    userId: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
       required: [true, "User is required"],

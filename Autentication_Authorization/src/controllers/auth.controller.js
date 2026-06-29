@@ -37,10 +37,10 @@ export async function register(req, res) {
 const refreshTokenHash=crypto.createHash("sha256").update(refreshToken).digest("hex");
   
 const session = await sessionModel.create({
-  user:user._id,
+  user:newUser._id,
   refreshTokenHash,
   ip:req.ip,
-  userAgent:req.header["user-agent"]
+  userAgent:req.get("user-agent")
 })
   const accessToken = jwt.sign({ userId: newUser._id,sessionId:session._id }, config.JWT_SECRET, {
     expiresIn: "15m",
@@ -58,9 +58,16 @@ const session = await sessionModel.create({
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
 
-  res
-    .status(201)
-    .json({ message: "User registered successfully", accessToken });
+ res.status(201).json({
+  message: "User registered successfully",
+  accessToken,
+  sessionId: session._id,
+  user: {
+    id: newUser._id,
+    username: newUser.username,
+    email: newUser.email,
+  },
+});
 }
 
 export async function getMe(req, res) {
